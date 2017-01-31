@@ -12,7 +12,7 @@ const generalOptions = ((options)=>({
   offlineGame: options.offline.startGame,
   reset: options.reset,
   waitPlayers: options.waitPlayers
-//jkh
+//jkhkk
 }))(options);
 
 console.log(generalOptions);
