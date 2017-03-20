@@ -6,18 +6,19 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = io => {
   const sessionIo = io.of('/Simon');
-  let players = [];
+  const players = [];
   let ready = 0;
   sessionIo.on('connection', (socket, next) => {
     const id = socket.id;
 
     console.log('  --> SocketIO on connection', id);
     players.push(id);
+    socket.broadcast.emit('connected', players.length);
     console.log('Online players: ' + players.length);
 
     console.log('online players: ' + players.length + 'ready ' + ready);
 
-    //ON DISCONNECT
+    // ON DISCONNECT
     socket.on('disconnect', () => {
       console.log('disconected');
       players.shift();
@@ -32,17 +33,23 @@ exports.default = io => {
       socket.emit('clickedPad', pad);
     });
 
+    socket.on('leaveGame', () => {
+      console.log('leave game');
+      socket.broadcast.emit('leaveGame');
+    });
+
     socket.on('nextLevel', () => {
       console.log('next level');
-      let move = Math.floor(Math.random() * 4);
+      const move = Math.floor(Math.random() * 4);
       socket.emit('nextLevel', move);
       socket.broadcast.emit('nextLevel', move);
     });
     socket.on('ready', () => {
       ready++;
       console.log(ready);
+      console.log('---------');
       if (ready > 1) {
-        let move = Math.floor(Math.random() * 4);
+        const move = Math.floor(Math.random() * 4);
         socket.emit('allReady', move);
         socket.broadcast.emit('allReady', move);
       }

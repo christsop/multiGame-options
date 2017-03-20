@@ -35,7 +35,6 @@ exports.default = io => {
     socket.on('newAction', action => {
       console.log('Emiting Action');
       socket.emit('dispachAction', action);
-      socket.broadcast.emit('dispachAction', action);
       console.log('Action Emited');
     });
 

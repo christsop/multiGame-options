@@ -1,30 +1,29 @@
-//import { users } from './userList';
-import { connect } from 'react-redux'
-import { lighten } from './Lighten'
-import { Play } from './Play'
-
+import { PlayNextLevel, lighten } from '../functions';
+import { initialState } from 'store/simonReducer'
 export const Pad = (state, pad) => {
-  if(state.sequence[0] == pad){
-    console.log(state);
+  let highScore = 1;
+  if (state.checkHistory[0] === pad) {
     lighten(pad);
-    if (state.sequence.length==1){
-      Play(state);
-      return{
-        ...state
-      }
-    }
-    state.sequence.shift();
-    return{ ...state };
-  }
-  else{
-    if (state.highScore<state.score || state.highScore == undefined){
-      state.highScore = state.score;
-    }
-    state.score = 0;
-    state.history = [];
-    return{
+    if (state.checkHistory.length === 1) {
+      return PlayNextLevel(state);
+    };
+    const newCheckHistory = state.checkHistory.slice(1);
+    return {
       ...state,
-      gameState: 'lose'
-    }
-  }
+      checkHistory: newCheckHistory,
+    };
+  };
+  if (state.highScore < state.score) {
+    return {
+      ...initialState,
+      gameState: 'lose',
+      highScore: state.score - 1,
+    };
+  };
+  console.log(state);
+  return {
+    ...initialState,
+    highScore: state.highScore,
+    gameState: 'lose',
+  };
 };

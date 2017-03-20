@@ -1,21 +1,10 @@
-import { connect } from 'react-redux'
-import React from 'react'
-import { bindActionCreators } from 'redux'
-import options from '../modules/actions'
-import styles from './PlayingView.scss'
+import React from 'react';
+import { connect } from 'react-redux';
+import { onlinePad, offlinePad } from '../constants';
+import { Pads } from '../components/Pads';
 
-export let Pads = ({ actions }) => (
-  <div className='circle'>
-    <p className={styles.firstpad} onClick={() => (actions.clickPad('first'))} id='first' ></p>
-    <p className={styles.secondpad} onClick={() => (actions.clickPad('second'))} id='second'></p>
-    <p className={styles.thirdpad} onClick={() => (actions.clickPad('third'))} id='third'></p>
-    <p className={styles.fourthpad} onClick={() => (actions.clickPad('fourth'))} id='fourth'></p>
-  </div>
-);
+const mapStateToProps = ({ Simon: { gameState } }) => ({
+  gameState,
+});
 
-Pads = connect(
-  null,
-  (dispatch) => ({
-    actions: bindActionCreators({ clickPad: options.offline.clickPad }, dispatch),
-  }),
-)(Pads);
+export default connect(mapStateToProps, { onlinePad, offlinePad })(Pads);

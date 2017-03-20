@@ -6,6 +6,7 @@ import TicTacToeRoute from './TicTacToe'
 import HangManRoute from './Hangman'
 import Simon from './Simon'
 import Memory from './MemoryGame'
+import Chess from './Chess'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -20,6 +21,7 @@ export const createRoutes = (store) => ({
     HangManRoute,
     Simon,
     Memory,
+    Chess
   ]
 });
 

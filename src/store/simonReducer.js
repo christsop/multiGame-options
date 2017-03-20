@@ -1,35 +1,35 @@
-import { Pad } from '../routes/Simon/modules/functions/Pad'
-import { PadOnline } from '../routes/Simon/modules/functions/PadOnline'
-import { Play } from '../routes/Simon/modules/functions/Play'
-import { PlayOnline } from '../routes/Simon/modules/functions/PlayOnline'
-import { waitPlayers } from '../routes/Simon/modules/functions/waitPlayers'
-import { simonSocket } from '../model-services/server-apis';
+import { Pad, PadOnline, PlayNextLevel, PlayOnline, waitPlayers, leave } from '../routes/Simon/modules/functions';
+import '../model-services/simon/socketio';
 
-const Simon = (state = { history: [], score : 0, onlinePlayers: 56}, action) => {
+export const initialState = { history: [], score: 0, highScore: 0, onlinePlayers: 56 };
+
+const Simon = (state = initialState, action) => {
   switch (action.type) {
+
     case 'START_GAME' :
-      console.log('not1');
-      return Play(state);
+      return PlayNextLevel(state);
+
     case 'START_GAME_ONLINE' :
-      console.log(state);
       return PlayOnline(state, action.payload.move);
+
     case 'RESET':
-      return  { ...state, gameState: 'reset' };
+      return { ...initialState, gameState: 'reset' };
+
     case 'CLICK_PAD_ONLINE' :
       return PadOnline(state, action.payload.pad);
+
     case 'CLICK_PAD' :
-      console.log('not');
       return Pad(state, action.payload.pad);
-    case 'WAIT_PLAYERS':
-      return waitPlayers(state) ;
+
+    case 'WAIT_PLAYERS' :
+      return waitPlayers(state);
+
+    case 'LEAVE_GAME' :
+      return leave(initialState);
+
     default :
       return state;
   }
 };
-
-simonSocket.on('connected', (onlinePlayers)=>{
-  state.onlinePlayers = onlinePlayers;
-  console.log(state);
-});
 
 export { Simon };
