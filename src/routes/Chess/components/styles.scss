@@ -1,0 +1,40 @@
+
+.board {
+  margin-top: 8rem;
+  div:nth-child(even) {
+    div:nth-child(even) {
+      background-color: black;
+    }
+  };
+  div:nth-child(odd) {
+    div:nth-child(odd) {
+      background-color: black;
+    }
+  };
+}
+.validMoves {
+  >div {
+    background-color: red;
+  }
+}
+
+.line {
+  margin:  auto;
+  box-sizing: content-box;
+  height: 8rem;
+  width: 64rem;
+  >div {
+    border: 1px solid black;
+    box-sizing: border-box;
+    float: left;
+    font-size: 9rem;
+    font-weight: bold;
+    height: 8rem;
+    line-height: 9rem;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+    width: 8rem;
+  }
+}
