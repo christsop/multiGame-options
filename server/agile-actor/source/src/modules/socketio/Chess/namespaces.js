@@ -26,9 +26,13 @@ export default (io) => {
         socket.emit('allReady', 'black');
         socket.broadcast.emit('allReady', 'white');
       }
+
     });
 
-
+    socket.on('moveTile',(action) => {
+      socket.emit('movedTile', action);
+      socket.broadcast.emit('movedTile', action);
+    })
 
 
 

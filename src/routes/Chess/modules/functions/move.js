@@ -1,10 +1,12 @@
 import resetValidMoves from './resetValidMoves';
 import revertPlayerTurn from './revertPlayerTurn';
 
-const move = (state, toRow, toLine)=>{
+const move = (state, toRow, toLine, readyToMove)=>{
+  console.log(readyToMove);
+  console.log('moved');
   const newSquares = state.squares.slice(0, 8);
-  const FROM_ROW = state.readyToMove.row;
-  const FROM_LINE = state.readyToMove.line;
+  const FROM_ROW = readyToMove.row;
+  const FROM_LINE = readyToMove.line;
   let newPlayerTurn;
   let newValidMoves = resetValidMoves();
   const figureToMove = state.squares[FROM_ROW][FROM_LINE];
@@ -15,7 +17,7 @@ const move = (state, toRow, toLine)=>{
     victory = state.playerTurn;
     newGameState = 'finished';
   }
-  if(state.validMoves[toRow][toLine]){
+  if(true){
     newSquares[FROM_ROW][FROM_LINE] = 'empty';
     newSquares[toRow][toLine] = figureToMove;
     newPlayerTurn = revertPlayerTurn(state.playerTurn);

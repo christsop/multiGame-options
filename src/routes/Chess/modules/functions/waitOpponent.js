@@ -1,7 +1,5 @@
-import { chessSocket } from '../../../../model-services/server-apis';
 
 const waitOpponent = (state) => {
-  chessSocket.emit('ready');
 
   return {
     ...state,

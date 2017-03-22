@@ -8,6 +8,8 @@ const mapStateToProps = (state)=> ({
   victory: state.chess.victory,
   validMoves: state.chess.validMoves,
   playerTurn: state.chess.playerTurn,
+  readyToMove:state.chess.readyToMove,
+  gameState:state.chess.gameState,
 });
 
 export default connect(mapStateToProps, { selectFigure, moveFigure } )(Square);

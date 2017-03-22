@@ -11,7 +11,7 @@ let dispatcher = {
   },
 
   allReady: (playerColor) => {
-    console.log('------------');
+    console.log('------------'+playerColor);
     store.dispatch({
       type: 'START_ONLINE_GAME_CHESS',
       payload: {
@@ -20,10 +20,12 @@ let dispatcher = {
     });
   },
 
-  leaveGame: () => {
-    alert('your opponent left');
+  moveFigure: (action) => {
     store.dispatch({
-      type: 'LEAVE_GAME',
+      type: action.type,
+      payload: {
+        rowID: action.payload.rowId, lineID: action.payload.lineId, readyToMove: action.payload.readyToMove
+      },
     });
   },
 };

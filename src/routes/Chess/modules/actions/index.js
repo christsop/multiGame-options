@@ -25,9 +25,9 @@ export const options = {
   },
 
   moveFigure:{
-    offline: (rowID, lineID)=>({
+    offline: (rowID, lineID, readyToMove)=>({
       type: MOVE_FIGURE,
-      payload: {rowID, lineID}
+      payload: {rowID, lineID, readyToMove}
     })
   }
 };

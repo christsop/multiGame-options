@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Chess from './Chess';
 import styles from './styles.scss';
+import {chessSocket} from '../../../model-services/server-apis'
+
 
 const GameView = ( {victory, playerTurn, gameState,  newGame, newGameOnline, resetGame} )=> {
 
@@ -9,7 +11,8 @@ const GameView = ( {victory, playerTurn, gameState,  newGame, newGameOnline, res
       return (
         <div>
           <h1> <button type="button" onClick={ () => (newGame()) }>New Game</button></h1>
-          <h1> <button type="button" onClick={ () => (newGameOnline()) }>New Game Online</button></h1>
+          <h1> <button type="button" onClick={ () =>  { chessSocket.emit('ready');
+                                                        newGameOnline(); } }>New Game Online</button></h1>
         </div>
       );
 

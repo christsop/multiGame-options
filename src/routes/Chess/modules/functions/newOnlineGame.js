@@ -1,5 +1,5 @@
 
-const newOnlineGame = (playerColor) => {
+const newGameOnline = (state, playerColor) => {
 
   return {
     ...state,
@@ -8,4 +8,4 @@ const newOnlineGame = (playerColor) => {
   }
 };
 
-export default newOnlineGame;
+export default newGameOnline;
