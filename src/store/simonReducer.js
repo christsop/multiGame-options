@@ -3,7 +3,7 @@ import { PadOnline } from '../routes/Simon/modules/functions/PadOnline'
 import { Play } from '../routes/Simon/modules/functions/Play'
 import { PlayOnline } from '../routes/Simon/modules/functions/PlayOnline'
 import { waitPlayers } from '../routes/Simon/modules/functions/waitPlayers'
-import { simonSocket } from '../model-services/server-apis';
+import '../routes/Simon/modules/functions/subscriptions';
 
 const Simon = (state = { history: [], score : 0, onlinePlayers: 56}, action) => {
   switch (action.type) {
@@ -26,10 +26,5 @@ const Simon = (state = { history: [], score : 0, onlinePlayers: 56}, action) => 
       return state;
   }
 };
-
-simonSocket.on('connected', (onlinePlayers)=>{
-  state.onlinePlayers = onlinePlayers;
-  console.log(state);
-});
 
 export { Simon };

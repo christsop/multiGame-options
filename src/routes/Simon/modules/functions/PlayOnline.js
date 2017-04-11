@@ -1,5 +1,4 @@
 import { lighten } from './Lighten'
-import { simonSocket } from '../../../../model-services/server-apis';
 import { store } from 'main.js'
 
 var options = ['first', 'second', 'third', 'fourth'];
@@ -33,15 +32,3 @@ export const PlayOnline = (state, move) => {
     gameState: 'startedOnline',
   };
 };
-
-
-simonSocket.on('nextLevel', (move)=>{
-   store.dispatch(
-    {
-      type: 'START_GAME_ONLINE',
-      payload: {
-        move
-      }
-    }
-  )
-});

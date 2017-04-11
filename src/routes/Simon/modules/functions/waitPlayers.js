@@ -8,13 +8,3 @@ export const waitPlayers = (state)=>{
     gameState: 'waitUsers',
   }
 };
-simonSocket.on('allReady', (move)=>{
-  store.dispatch(
-    {
-      type: 'START_GAME_ONLINE',
-      payload: {
-        move
-      }
-    }
-  )
-});

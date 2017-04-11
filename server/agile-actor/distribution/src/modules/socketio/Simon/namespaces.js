@@ -13,6 +13,7 @@ exports.default = io => {
 
     console.log('  --> SocketIO on connection', id);
     players.push(id);
+    socket.broadcast.emit('connected', players.length);
     console.log('Online players: ' + players.length);
 
     console.log('online players: ' + players.length + 'ready ' + ready);

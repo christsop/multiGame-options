@@ -1,9 +1,4 @@
-/**
- * Created by chris on 25/1/2017.
- */
-import { connect } from 'react-redux'
 import { lighten } from './Lighten'
-import { PlayOnline } from './PlayOnline'
 import { store } from 'main.js'
 import { simonSocket } from '../../../../model-services/server-apis';
 
